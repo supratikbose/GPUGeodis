@@ -30,6 +30,8 @@ Below is an example comparison between the CPP implementation in [1] (bottom row
 1. Currently the code assumes the height, width and depth of if each channel of the image volume is a multiple of 8
 2. The number of channels may be 1, 2 or 4; The demo code is written for 2 channel image. Change is for single or 4 channel images. Also change scaling and normalization as needed before invoking GPU distance 
 3. In the demo code, the code to  run the CPP version [1] is present but is commented out. If you want to generate a comparison, install GeodisTk following [1] and uncomment the demo code.
+4. While the code is written in PyCuda, the kernel is obviously is in C-Cuda and also at the bottom of the file src/gpuGeodis.py, one can find the the commented version of the C++ code that can drive the kernel. I originally wrote the code in C++ - CUDA, before converting the driver code into python.
+5. I express my sincere thanks to Prof. Ofir Weber (Bar-Ilan University, Israel) and Prof. Guotai Wang (University of Electronic Science and Technology of China) for helpful papers / suggestions.
 
 
 
