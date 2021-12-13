@@ -20,6 +20,7 @@ Now, in this repository we provide a GPU (PyCUDA)  implementation of only the ra
   - - Along depth: read from 9 neighborhood voxel of next slice and update a voxel
   - - Along height: read from 3 neighborhood voxel of lower row and update a voxel
   - - Along width: read from 1 neighborhood voxel in current row of next sagittal plane and update a voxel
+  - 
 [`If you use this  GPU code, please cite our github.`](https://github.com/supratikbose/GPUGeodis)
 Below is an example comparison between the CPP implementation in [1] (bottom row: dist_CPU) and GPU implementation (top row: dist_cpu) of 3D geodesic distance on a multichannel (CT + PET) image. 
 
