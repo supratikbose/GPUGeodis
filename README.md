@@ -1,5 +1,5 @@
 # GPUGeodis: GPU based Geodesic Distance Transform Toolkit for 3D Images 
-Geodesic transformation of images can be implementated with two approaches: fast marching and raster scan. Fast marching is based on the iterative propagation of a pixel front with velocity F [2]. Raster scan is based on kernel operations that are sequentially applied over the image in multiple passes [3][4]. In GeoS [5], the authors proposed to use a 3x3 kernel for forward and backward passes for efficient geodesic distance transform, which was used for image segmentation. DeepIGeoS [6] proposed to combine geodesic distance transforms with convolutional neural networks for efficient interactive segmentation of 2D and 3D images.  As part of their work of DeepIGeoS [6], Guotai Wang et.al have provided a  cpp implementation of fast marching and raster scan for 2D/3D geodesic and Euclidean distance transforms and a mixture of them, and proivdes a python interface to use it in[1]. .[`If you use their CPP code, please cite their paper.`](https://ieeexplore.ieee.org/document/8370732)
+Geodesic transformation of images can be implementated with two approaches: fast marching and raster scan. Fast marching is based on the iterative propagation of a pixel front with velocity F [2]. Raster scan is based on kernel operations that are sequentially applied over the image in multiple passes [3][4]. In GeoS [5], the authors proposed to use a 3x3 kernel for forward and backward passes for efficient geodesic distance transform, which was used for image segmentation. DeepIGeoS [6] proposed to combine geodesic distance transforms with convolutional neural networks for efficient interactive segmentation of 2D and 3D images.  As part of their work of DeepIGeoS [6], Guotai Wang et.al have provided a  cpp implementation of fast marching and raster scan for 2D/3D geodesic and Euclidean distance transforms and a mixture of them, and proivdes a python interface to use it in[1]. [`If you use their CPP code, please cite their paper.`](https://ieeexplore.ieee.org/document/8370732) 
 
 ![ranster scan](./data/ranster_scan.png)
 Raster scan for geodesic distance transform. Image from [5].
@@ -20,7 +20,7 @@ Now, in this repository we provide a GPU (PyCUDA)  implementation of only the ra
   - - Along depth: read from 9 neighborhood voxel of next slice and update a voxel
   - - Along height: read from 3 neighborhood voxel of lower row and update a voxel
   - - Along width: read from 1 neighborhood voxel in current row of next sagittal plane and update a voxel
-
+[`If you use this  GPU code, please cite our github.`](https://github.com/supratikbose/GPUGeodis)
 Below is an example comparison between the CPP implementation in [1] (bottom row: dist_CPU) and GPU implementation (top row: dist_cpu) of 3D geodesic distance on a multichannel (CT + PET) image. 
 
 ![example](./data/example_comparison_cpu_gpu.png)
