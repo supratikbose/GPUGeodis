@@ -11,7 +11,7 @@ Raster scan for geodesic distance transform. Image from [5].
 * [5] Criminisi, Antonio, Toby Sharp, and Andrew Blake. "Geos: Geodesic image segmentation." ECCV, 2008.
 * [6] Wang, Guotai, et al. "[`DeepIGeoS: A deep interactive geodesic framework for medical image segmentation`](https://ieeexplore.ieee.org/document/8370732)."  TPAMI, 2018. 
 
-Now, in this repository we provide a GPU (PyCUDA)  implementation of only the raste  scan version of the 3D geodesic distance. While the CPP version in [1] consists of a forward and backward pass covering 13 + 13 = 26-voxel nighborhood of each voxel, this GPU version consists of 6 passes in each iteration : 
+Now, in this repository we provide a GPU (PyCUDA)  implementation of only the raster  scan version of the 3D geodesic distance. While the CPP version in [1] consists of a forward and backward pass covering 13 + 13 = 26-voxel nighborhood of each voxel, this GPU version consists of 6 passes in each iteration : 
   - For each iteration 
   - - forward direction 
   - - - Launch kernel for axial plane k, 1<=k<=Depth-1 and update (in parallel) voxels by reading from 9 neighborhood voxel of  axial plane k-1
