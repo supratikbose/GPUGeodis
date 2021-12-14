@@ -12,14 +12,15 @@ Raster scan for geodesic distance transform. Image from [5].
 * [6] Wang, Guotai, et al. "[`DeepIGeoS: A deep interactive geodesic framework for medical image segmentation`](https://ieeexplore.ieee.org/document/8370732)."  TPAMI, 2018. 
 
 Now, in this repository we provide a GPU (PyCUDA)  implementation of only the raste  scan version of the 3D geodesic distance. While the CPP version in [1] consists of a forward and backward pass covering 13 + 13 = 26-voxel nighborhood of each voxel, this GPU version consists of 6 passes in each iteration : 
-  - forward direction 
-  - - Along depth: read from 9 neighborhood voxel of previous slice and update a voxel
-  - - Along height: read from 3 neighborhood voxel of upper row and update a voxel
-  - - Along width: read from 1 neighborhood voxel in current row of previous sagittal plane and update a voxel
-  - backward direction 
-  - - Along depth: read from 9 neighborhood voxel of next slice and update a voxel
-  - - Along height: read from 3 neighborhood voxel of lower row and update a voxel
-  - - Along width: read from 1 neighborhood voxel in current row of next sagittal plane and update a voxel
+  - For each iteration 
+  - - forward direction 
+  - - - Launch kernel for axial plane k, 1<=k<=Depth-1 and update (in parallel) voxels by reading from 9 neighborhood voxel of  axial plane k-1
+  - - - Launch kernel for coronal plane j,1<=j<=Height-1 and update (in parallel) voxels by reading from 3 neighborhood voxel of row in coronal plane j-1
+  - - - Launch kernel per sagittal plane i,1<=i<=Width-1 and update (in parallel) voxels by reading from 1 neighborhood voxel in same row of sagittal plane i-1
+  - - backward direction 
+  - - - Launch kernel for axial plane k, Depth-2>=k>=1 and update (in parallel) voxels by reading from 9 neighborhood voxel of  axial plane k+1
+  - - - Launch kernel for coronal plane j, Height-2>=j>=1 and update (in parallel) voxels by reading from 3 neighborhood voxel of row in coronal plane j+1
+  - - - Launch kernel per sagittal plane i, Width-2>=i>=1 and update (in parallel) voxels by reading from 1 neighborhood voxel  in same row of sagittal plane i+1
   - 
 [`If you use this  GPU code, please cite our github.`](https://github.com/supratikbose/GPUGeodis)
 Below is an example comparison between the CPP implementation in [1] (bottom row: dist_CPU) and GPU implementation (top row: dist_cpu) of 3D geodesic distance on a multichannel (CT + PET) image. 
